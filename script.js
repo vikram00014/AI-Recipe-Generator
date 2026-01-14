@@ -67,13 +67,35 @@ Please provide the recipe in the following JSON format:
 
 Make sure the recipe is practical, delicious, and creative. Focus on making the most of the available ingredients.`;
 
-    const response = await fetch('/api/generate-recipe', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ prompt })
-    });
+    let response;
+    
+    try {
+        response = await fetch('/api/generate-recipe', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ prompt })
+        });
+    } catch (error) {
+        const API_KEY = 'AIzaSyDw4Xkj7OQy9xgHZo5ruTCL30T3j32l2B8';
+        response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
+                    }]
+                })
+            }
+        );
+    }
 
     if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
