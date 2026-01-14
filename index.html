@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Recipe Generator - Find Your Perfect Recipe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">🍳</span>
+                <h1>AI Recipe Generator</h1>
+            </div>
+            <p class="tagline">Transform your ingredients into delicious recipes with AI</p>
+        </header>
+
+        <main>
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <label for="ingredients">What ingredients do you have?</label>
+                    <textarea 
+                        id="ingredients" 
+                        placeholder="E.g., chicken, tomatoes, garlic, onions, rice..."
+                        rows="4"
+                    ></textarea>
+                    <div class="input-hints">
+                        <span class="hint">💡 Tip: Add dietary preferences like "vegetarian" or "low-carb"</span>
+                    </div>
+                </div>
+
+                <div class="preferences">
+                    <h3>Preferences (Optional)</h3>
+                    <div class="preference-grid">
+                        <div class="preference-item">
+                            <label for="cuisine">Cuisine Type</label>
+                            <select id="cuisine">
+                                <option value="">Any</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Mexican">Mexican</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="Thai">Thai</option>
+                                <option value="Mediterranean">Mediterranean</option>
+                            </select>
+                        </div>
+                        <div class="preference-item">
+                            <label for="mealType">Meal Type</label>
+                            <select id="mealType">
+                                <option value="">Any</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Snack">Snack</option>
+                                <option value="Dessert">Dessert</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="generateBtn" class="generate-btn">
+                    <span class="btn-text">Generate Recipes</span>
+                    <span class="btn-icon">✨</span>
+                </button>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="loading-spinner"></div>
+                <p>Creating your perfect recipe...</p>
+            </div>
+
+            <div id="error" class="error hidden">
+                <span class="error-icon">⚠️</span>
+                <p id="errorMessage"></p>
+            </div>
+
+            <div id="results" class="results hidden">
+                <div class="results-header">
+                    <h2>Your AI-Generated Recipe</h2>
+                    <button id="newRecipeBtn" class="secondary-btn">Try Another Recipe</button>
+                </div>
+                <div id="recipeContent" class="recipe-content"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Google Gemini AI ✨</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
