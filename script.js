@@ -1,7 +1,3 @@
-// Gemini API Configuration
-const API_KEY = 'AIzaSyCtfwB9ax8lNwSYfiCfB7lcbBsgJzlv1aA';
-const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
-
 // DOM Elements
 const ingredientsInput = document.getElementById('ingredients');
 const cuisineSelect = document.getElementById('cuisine');
@@ -78,20 +74,12 @@ Please provide the recipe in the following JSON format:
 
 Make sure the recipe is practical, delicious, and creative. Focus on making the most of the available ingredients.`;
 
-    const requestBody = {
-        contents: [{
-            parts: [{
-                text: prompt
-            }]
-        }]
-    };
-
-    const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+    const response = await fetch('/api/generate-recipe', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify({ prompt })
     });
 
     if (!response.ok) {

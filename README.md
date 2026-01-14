@@ -17,18 +17,23 @@ git clone https://github.com/vikram00014/AI-Recipe-Generator.git
 cd AI-Recipe-Generator
 ```
 
-2. Open `index.html` in your browser
+2. Get a Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
-That's it. No build process needed.
+3. For local testing, create `.env` file:
+```
+GEMINI_API_KEY=your_api_key_here
+```
 
 ## Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vikram00014/AI-Recipe-Generator)
-
-Or manually:
 1. Push to GitHub
 2. Import project in Vercel
-3. Deploy
+3. Add environment variable:
+   - Key: `GEMINI_API_KEY`
+   - Value: Your Gemini API key
+4. Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vikram00014/AI-Recipe-Generator)
 
 ## Tech Stack
 
