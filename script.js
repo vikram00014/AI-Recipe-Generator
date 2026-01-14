@@ -1,4 +1,3 @@
-// DOM Elements
 const ingredientsInput = document.getElementById('ingredients');
 const cuisineSelect = document.getElementById('cuisine');
 const mealTypeSelect = document.getElementById('mealType');
@@ -10,18 +9,15 @@ const errorMessage = document.getElementById('errorMessage');
 const resultsDiv = document.getElementById('results');
 const recipeContent = document.getElementById('recipeContent');
 
-// Event Listeners
 generateBtn.addEventListener('click', generateRecipe);
 newRecipeBtn.addEventListener('click', resetForm);
 
-// Enter key support in textarea
 ingredientsInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && e.ctrlKey) {
         generateRecipe();
     }
 });
 
-// Main function to generate recipe
 async function generateRecipe() {
     const ingredients = ingredientsInput.value.trim();
     
@@ -30,7 +26,6 @@ async function generateRecipe() {
         return;
     }
 
-    // Show loading state
     showLoading();
     
     try {
@@ -42,12 +37,10 @@ async function generateRecipe() {
     }
 }
 
-// Fetch recipe from Gemini API
 async function fetchRecipeFromGemini(ingredients) {
     const cuisine = cuisineSelect.value;
     const mealType = mealTypeSelect.value;
     
-    // Build the prompt
     let prompt = `Create a detailed, delicious recipe using these ingredients: ${ingredients}.`;
     
     if (cuisine) {
@@ -95,7 +88,6 @@ Make sure the recipe is practical, delicious, and creative. Focus on making the 
 
     const text = data.candidates[0].content.parts[0].text;
     
-    // Try to extract JSON from the response
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
         throw new Error('Could not parse recipe data');
@@ -105,7 +97,6 @@ Make sure the recipe is practical, delicious, and creative. Focus on making the 
     return recipe;
 }
 
-// Display the recipe
 function displayRecipe(recipe) {
     const metaItems = [
         { icon: '⏱️', label: 'Prep', value: recipe.prepTime },
@@ -171,7 +162,6 @@ function displayRecipe(recipe) {
     resultsDiv.classList.remove('hidden');
 }
 
-// UI State Management
 function showLoading() {
     generateBtn.disabled = true;
     loadingDiv.classList.remove('hidden');
@@ -200,5 +190,4 @@ function resetForm() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Initial focus
 ingredientsInput.focus();
